@@ -1,5 +1,5 @@
 // src/messages/messages.controller.ts
-import { Controller, Get, Post, Body, Param } from "@nestjs/common";
+import { Controller, Get, Param } from "@nestjs/common";
 import { MessagesService } from "./message.service";
 
 @Controller("messages")
@@ -15,9 +15,9 @@ export class MessagesController {
     return this.messagesService.getMessages(senderId, receiverId);
   }
 
-  @Post()
-  async createMessage(@Body() body: { senderId: number; text: string }) {
-    // Create a new message
-    return this.messagesService.createMessage(body.senderId, body.text);
-  }
+  // @Post()
+  // async createMessage(@Body() body: { senderId: number; text: string }) {
+  //   // Create a new message
+  //   return this.messagesService.createMessage(body.senderId, body.text);
+  // }
 }

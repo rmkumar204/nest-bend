@@ -5,7 +5,7 @@ import {
   ManyToOne,
   CreateDateColumn,
 } from "typeorm";
-import { Chat } from "../../chat/entities/chat.entity";
+import { User } from "src/user/entities/user.entity";
 
 @Entity()
 export class Message {
@@ -15,11 +15,11 @@ export class Message {
   @Column()
   text: string;
 
-  @ManyToOne(() => Chat, (user) => user.sentMessages)
-  senderUser: Chat;
+  @ManyToOne(() => User, (user) => user.sentMessages)
+  senderUser: User;
 
-  @ManyToOne(() => Chat, (user) => user.receivedMessages)
-  receiverUser: Chat;
+  @ManyToOne(() => User, (user) => user.receivedMessages)
+  receiverUser: User;
 
   @Column()
   sender: string; // Add this to store the sender's username

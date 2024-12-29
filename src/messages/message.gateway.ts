@@ -35,11 +35,14 @@ export class MessagesGateway
 
   @SubscribeMessage("sendMessage")
   async handleMessage(
-    @MessageBody() messageData: { senderId: number; text: string },
+    @MessageBody()
+    messageData: { senderId: number; receiverId: number; text: string },
     @ConnectedSocket() socket: Socket,
   ) {
+    console.log("messagess", messageData);
     const message = await this.messagesService.createMessage(
       messageData.senderId,
+      messageData.receiverId,
       messageData.text,
     );
     socket.emit("receiveMessage", message); // Send to the current client

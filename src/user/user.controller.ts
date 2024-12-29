@@ -33,7 +33,10 @@ export class UserController {
   findOne(@Param("id") id: string) {
     return this.userService.findOne(+id);
   }
-
+  @Get("userId/:userId")
+  getContacts(@Param("userId") userId: number) {
+    return this.userService.getContacts(userId);
+  }
   @Patch(":id")
   update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.userService.update(+id, updateUserDto);

@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable } from "@nestjs/common";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { User } from "./entities/user.entity";
-import { Repository } from "typeorm";
+import { Not, Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import * as bcrypt from "bcryptjs";
 
@@ -25,8 +25,15 @@ export class UserService {
     return await this.userEntity.save(user);
   }
   async findByEmail(email: string): Promise<User | null> {
-    // Example query: Replace with actual implementation
     return await this.userEntity.findOne({ where: { Emailfield: email } });
+  }
+  async getContacts(id: number) {
+    console.log("id", id);
+    const data = await this.userEntity.find({ where: { id: Not(id) } });
+    if (!data || data.length === 0) {
+      throw new HttpException("No Users found", HttpStatus.NOT_FOUND);
+    }
+    return { data };
   }
 
   findAll() {

@@ -4,7 +4,9 @@ import {
   PrimaryGeneratedColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
+import { Message } from "src/messages/entities/message.entity";
 
 @Entity("user_details") // Entity table name
 export class User {
@@ -85,4 +87,10 @@ export class User {
 
   @UpdateDateColumn({ type: "timestamp" })
   updatedAt: Date;
+
+  @OneToMany(() => Message, (message) => message.senderUser)
+  sentMessages: Message[];
+
+  @OneToMany(() => Message, (message) => message.receiverUser)
+  receivedMessages: Message[];
 }
