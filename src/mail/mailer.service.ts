@@ -32,7 +32,6 @@ export class MailService {
         ? `${html}<p>Your OTP is: <strong>${OTP}</strong></p>`
         : `<p>Your OTP is: <strong>${OTP}</strong></p>`;
 
-      console.log("Updated text:", updatedText, "Updated HTML:", updatedHtml);
       text = updatedText;
       html = updatedHtml;
       const result = await this.mailerService.sendMail({

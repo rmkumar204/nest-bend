@@ -33,7 +33,6 @@ export class AuthController {
   }
   @Get("session")
   async checkSession(): Promise<object> {
-    console.log("checking");
     return { statusCode: 200, status: true, message: "Success" };
   }
 }

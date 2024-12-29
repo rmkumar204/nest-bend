@@ -42,7 +42,6 @@ export class MessagesGateway
     messageData: { senderId: number; receiverId: number; text: string },
     @ConnectedSocket() socket: Socket,
   ) {
-    console.log("Received Message:", messageData);
     const message = await this.messagesService.createMessage(
       messageData.senderId,
       messageData.receiverId,

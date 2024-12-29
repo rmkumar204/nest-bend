@@ -28,7 +28,6 @@ export class UserService {
     return await this.userEntity.findOne({ where: { Emailfield: email } });
   }
   async getContacts(id: number) {
-    console.log("id", id);
     const data = await this.userEntity.find({ where: { id: Not(id) } });
     if (!data || data.length === 0) {
       throw new HttpException("No Users found", HttpStatus.NOT_FOUND);
