@@ -42,7 +42,6 @@ export class MessagesService {
     // Save the message
     try {
       const savedMessage = await this.messagesRepository.save(message);
-      console.log("savedmess", savedMessage);
       return savedMessage;
     } catch (error) {
       console.error("Error saving message:", error);
@@ -51,7 +50,6 @@ export class MessagesService {
   }
 
   async getMessages(senderId: number, receiverId: number) {
-    console.log("dd", senderId, receiverId);
     return this.messagesRepository.find({
       where: [
         { senderUser: { id: senderId }, receiverUser: { id: receiverId } },

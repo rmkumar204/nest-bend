@@ -14,7 +14,6 @@ import { ChatModule } from "./chat/chat.module";
 import { AuthController } from "./auth/auth.controller";
 import { JwtStrategy } from "./auth/jwt.strategy";
 import { MessagesModule } from "./messages/message.module";
-import { MessagesGateway } from "./messages/message.gateway";
 import { MailModule } from "./mail/mailer.module";
 import { MailController } from "./mail/mailer.controller";
 import { AuthMiddleware } from "./middleware/auth.middleware";
@@ -43,7 +42,7 @@ import { AuthModule } from "./auth/auth.module";
     AuthModule,
   ],
   controllers: [AppController, AuthController, MailController],
-  providers: [AppService, MessagesGateway, JwtStrategy],
+  providers: [AppService, JwtStrategy],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
